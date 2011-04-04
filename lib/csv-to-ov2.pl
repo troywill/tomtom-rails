@@ -3,13 +3,17 @@ use warnings;
 use strict;
 use Text::CSV;
 
-open ( my $out, ">", "troy.ov2" );
+my $infile = $ARGV[0];
+my $outfile = $ARGV[1];
+
+open my $fh, $infile or die "$infile: $!";
+open( my $out, ">", $outfile ) or die "$outfile: $!";
+
 
 my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
     or die "Cannot use CSV: ".Text::CSV->error_diag ();
 
 my @rows;
-open my $fh, "Lax.csv" or die "Lax.csv: $!";
 while ( my $row = $csv->getline( $fh ) ) {
 #    $row->[2] =~ m/pattern/ or next; # 3rd field should match
     my $longitude = $row->[0] * 100000;
