@@ -8,8 +8,6 @@ open ( my $out, ">", "troy.ov2" );
 my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
     or die "Cannot use CSV: ".Text::CSV->error_diag ();
 
-# my $csv = Text::CSV->new;
-
 my @rows;
 open my $fh, "Lax.csv" or die "Lax.csv: $!";
 while ( my $row = $csv->getline( $fh ) ) {
@@ -22,9 +20,7 @@ while ( my $row = $csv->getline( $fh ) ) {
     print "=> $longitude, $latitude, $length, $name\n";
     push @rows, $row;
 
-    
-    my $packed = pack("c V N N A* c", 2, $length, $longitude, $latitude, $name, 0);
-    $packed = pack("c V V V A* c", 2, $length, $longitude, $latitude, $name, 0);
+    my $packed = pack("c V V V A* c", 2, $length, $longitude, $latitude, $name, 0);
     print $out $packed;
 }
 $csv->eof or $csv->error_diag();
