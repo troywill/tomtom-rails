@@ -4,7 +4,14 @@ use strict;
 use Text::CSV;
 
 my $infile = $ARGV[0];
-my $outfile = $ARGV[1];
+
+# Given an input file, which I assume to be somename.csv,
+# created an output file ov2/_somename.ov2
+
+
+$infile =~ m/csv\/(.*?)\.csv/;
+my $basename = $1;
+my $outfile = "ov2/" . $basename . ".ov2";
 
 open my $fh, $infile or die "$infile: $!";
 open( my $out, ">", $outfile ) or die "$outfile: $!";
