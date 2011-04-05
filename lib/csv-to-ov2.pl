@@ -11,7 +11,7 @@ my $infile = $ARGV[0];
 
 $infile =~ m/csv\/(.*?)\.csv/;
 my $basename = $1;
-my $outfile = "ov2/" . $basename . ".ov2";
+my $outfile = "ov2/_" . $basename . ".ov2";
 
 open my $fh, $infile or die "$infile: $!";
 open( my $out, ">", $outfile ) or die "$outfile: $!";
