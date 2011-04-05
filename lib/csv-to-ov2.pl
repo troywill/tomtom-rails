@@ -20,8 +20,6 @@ while ( my $row = $csv->getline( $fh ) ) {
     my $latitude = $row->[1] * 100000;
     my $name = $row->[2];
     my $length = length($name) + 13 + 1;
-    print "==> $length\n";
-    print "=> $longitude, $latitude, $length, $name\n";
     push @rows, $row;
 
     my $packed = pack("c V V V A* c", 2, $length, $longitude, $latitude, $name, 0);
