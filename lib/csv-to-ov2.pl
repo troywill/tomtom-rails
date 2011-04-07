@@ -23,8 +23,8 @@ my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
 my @rows;
 while ( my $row = $csv->getline( $fh ) ) {
 #    $row->[2] =~ m/pattern/ or next; # 3rd field should match
-    my $longitude = $row->[0] * 100000;
-    my $latitude = $row->[1] * 100000;
+    my $latitude = $row->[0] * 100000;
+    my $longitude = $row->[1] * 100000;
     my $name = $row->[2];
     my $length = length($name) + 13 + 1;
     push @rows, $row;
