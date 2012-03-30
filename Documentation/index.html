@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Add community content to device</title>
+  <link href="pcmi_base.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="pcmi.js"></script>
+</head>
+<body onload="resetAllFileInput()">
+<div id="formTemplate" tabindex=-1>
+    <!-- First element should be the hidden frame to safe on unneeded tag searching.
+         As it can't be seen anyway there should be no reason to relocate it -->
+    <iframe class="hiddenIFrame" name="$(HiddenFrameId)" tabindex=-1></iframe>
+    <div class="uploadAreaLeft" tabindex=-1></div>
+    <div class="uploadAreaMiddle" tabindex=-1>
+      <div class="uploadAreaTitle" tabindex=-1>
+        <h2 tabindex=-1>File name</h2>
+      </div>
+      <form id="$(FormId)" method="post" action="$(Action)" enctype="multipart/form-data" target="$(TargetIFrame)" onsubmit="return $(ListId).isValidFile('$(FormId)','$(DataType)')" tabindex=-1>
+        <div id="$(ToolbarId)" tabindex=-1>
+
+          <div class="uploadToolBarButtonInActive" id="$(installButton)" tabindex=-1 onkeypress="$(FormId).keyPress(event,1)">
+            <div class="uploadButtonLeft" tabindex=-1></div>
+            <div class="uploadButtonMid" tabindex=-1>
+              <span class="ButtonLabelUpload" tabindex=-1>Upload</span>
+            </div>
+            <div class="uploadButtonRight" tabindex=-1></div>
+            <input type="submit" id="$(UploadButtonId)" value="Install" tabindex=-1></input>
+          </div>
+
+          <div class="inputField" id="$(inputField)" onkeypress="$(FormId).keyPress(event,0)" tabindex=-1>
+
+            <input id="$(BrowseButtonId)" type="file" name="file" size="45" multiple onchange="$(ListId).onFileInputChanged('$(BrowseButtonId)', '$(FileSelectDisplay)', '$(ToolbarId)')"  tabindex=-1/> 
+
+            <div class="uploadToolBarButton" tabindex=-1>
+              <img class="buttonLeft" src="img/button_left.png"  tabindex=-1/>
+              <div class="browseButtonMid" tabindex=-1>
+                <span class="ButtonLabelBrowse" tabindex=-1>Browse</span>
+              </div>
+              <img class="buttonRight" src="img/button_right.png"/ tabindex=-1>
+            </div>
+
+            <div class="textField" tabindex=-1>
+              <img class="inputLeft" src="img/input_left.png"  tabindex=-1/>
+              <div class="inputMid" tabindex=-1>
+                <span id="$(FileSelectDisplay)" tabindex=-1></span>
+              </div>
+              <img class="inputRight" src="img/input_right.png" tabindex=-1/>
+            </div>
+
+          </div>
+        </div>
+      </form>
+      </div>
+    <div class="uploadAreaRight" tabindex=-1></div>
+</div>
+<div class="clientArea">
+  <iframe class="hiddenIFrame" id="getFileTarget"></iframe>
+  <div class="pageHeader">
+    <div class="titleBarContainer">
+      <div id="logoBar"><img id="tomtomLogo" src="img/logo_tomtom.png" alt="TomTom logo." /></div>
+      <div id="help" tabindex=1 onkeypress="openHelpLink(event)">
+        <a id="helpLink" href="http://www.tomtom.com" target="_blank" tabindex=-1>
+          <div id="helpLabel">Help</div>
+          <img id="helpImage" src="img/help.png" alt="Help." />
+        </a>
+      </div>
+    </div>
+    <div id="hairline" tabindex=-1>
+      <!-- Comment inserted because IE renders empty divs with minimum height 20px... Now, it's not empty -->
+    </div>
+    <div class="titleBar">
+      <div class="titleBarContainer">
+        <div id="pcmiTitle">
+          Add community content to device
+        </div>
+        <div id="freeSpace">
+          <span id="freeSpaceLabel">Free Space:</span>
+          <span id="freeSpaceContent"></span>
+        </div>
+      </div>
+      <div id="pcmiLogo">
+        <img  src="img/lugano_icon.png" alt="POI logo." />
+      </div>
+    </div>
+  </div>
+  <noscript>
+    <div id="javascriptMissingFilter">&nbsp;</div>
+    <div id="javaScriptMissing">
+      <p>
+      <span id="javaScriptTitle">JavaScript is currently disabled</span>
+      </p>
+      <p>
+      <span id="browserWarning">Please re-enable JavaScript or use a different webbrowser to add community content to your navigation device</span>
+      </p>
+      <img src="img/warning.png" />
+    </div>
+  </noscript>
+  <div class="sectionHeader">
+    <h2 id="poiHeader">Community POI on device</h2>
+  </div>
+  <div class="listArea">
+    <table id="poiTable">
+      <script language="JavaScript">
+        var poiList = new pcmi.FileListViewer("/personal/pois", "poiTable", "poiList", sortPOIFileItems);
+      </script>
+	  </table>
+  </div>
+  <div id="uploadPOIArea">
+    <script language="JavaScript">
+        var poiForm = new pcmi.FormViewer("poi", "/personal/pois", "poiList", "uploadPOIArea");
+    </script>
+  </div>
+  <div id="addMorePOIButton" onclick="poiForm.toggleUploadArea('uploadPOIArea', 'addMorePOIButton', 'poi', 'poiForm', event)">
+    <img class="expandButton" src="img/add_plus.png" onkeypress="poiForm.toggleUploadArea('uploadPOIArea', 'addMorePOIButton', 'poi', 'poiForm', event)" tabindex=1/>
+    <span id="ButtonLabelAddPOI">Add POI</span>
+  </div>
+  <div class="sectionSeparator">
+    <!-- add comment to make non-empty -->
+  </div>
+  <div class="sectionHeader">
+    <h2 id="voicesHeader">Community voices on device</h2>
+  </div>
+  <div class="listArea">
+    <table id="voiceTable">
+	    <script language="JavaScript">
+        var voiceList = new pcmi.FileListViewer("/personal/voices", "voiceTable", "voiceList", null);
+      </script>
+	  </table>
+  </div>
+  <div id="uploadVoicesArea">
+    <script language="JavaScript">
+        var voiceForm = new pcmi.FormViewer("voice", "/personal/voices", "voiceList", "uploadVoicesArea");
+    </script>
+  </div>
+  <div id="addMoreVoicesButton" onclick="voiceForm.toggleUploadArea('uploadVoicesArea', 'addMoreVoicesButton', 'voice', 'voiceForm', event)">
+	  <img class="expandButton" src="img/add_plus.png" onkeypress="voiceForm.toggleUploadArea('uploadVoicesArea', 'addMoreVoicesButton', 'voice', 'voiceForm', event)" tabindex=1/>
+    <span id="ButtonLabelAddVoice">Add Voice</span>
+  </div>
+  <div class="sectionSeparator">
+    <!-- add comment to make non-empty -->
+  </div>
+  <div class="sectionHeader">
+    <h2 id="coloursHeader">Community map colour schemes on device</h2>
+  </div>
+  <div class="listArea">
+    <table id="colourTable">
+	    <script language="JavaScript">
+        var colourList = new pcmi.FileListViewer("/personal/schemes", "colourTable", "colourList", null);
+      </script>
+	  </table>
+  </div>
+  <div id="uploadColoursArea">
+    <script language="JavaScript">
+        var colourForm = new pcmi.FormViewer("colour", "/personal/schemes", "colourList", "uploadColoursArea");
+    </script>
+  </div>
+  <div id="addMoreColoursButton" onclick="colourForm.toggleUploadArea('uploadColoursArea', 'addMoreColoursButton', 'colour', 'colourForm', event)">
+	  <img class="expandButton" src="img/add_plus.png" onkeypress="colourForm.toggleUploadArea('uploadColoursArea', 'addMoreColoursButton', 'colour', 'colourForm', event)" tabindex=1/>
+    <span id="ButtonLabelAddColour">Add Colour Scheme</span>
+  </div>
+  <div class="sectionSeparator">
+    <!-- add comment to make non-empty -->
+  </div>
+  <div class="sectionHeader">
+    <h2 id="imagesHeader">Community images on device</h2>
+  </div>
+  <div class="listArea">
+    <table id="imageTable">
+	    <script language="JavaScript">
+        var imageList = new pcmi.FileListViewer("/personal/photos", "imageTable", "imageList", null);
+      </script>
+	  </table>
+  </div>
+  <div id="uploadImagesArea">
+    <script language="JavaScript">
+      var imageForm = new pcmi.FormViewer("image", "/personal/photos", "imageList", "uploadImagesArea");
+    </script>
+  </div>
+  <div id="addMoreImagesButton" onclick="imageForm.toggleUploadArea('uploadImagesArea', 'addMoreImagesButton', 'image', 'imageForm', event)">
+	  <img class="expandButton" src="img/add_plus.png" onkeypress="imageForm.toggleUploadArea('uploadImagesArea', 'addMoreImagesButton', 'image', 'imageForm', event)" tabindex=1/>
+    <span id="ButtonLabelAddImage">Add Image</span>
+  </div>
+  <div class="sectionSeparator">
+    <!-- add comment to make non-empty -->
+  </div>
+  <div class="sectionHeader">
+    <h2 id="vehiclesHeader">Community vehicle icons on device</h2>
+  </div>
+  <div class="listArea">
+    <table id="vehicleTable">
+	    <script language="JavaScript">
+        var vehicleList = new pcmi.FileListViewer("/personal/cars", "vehicleTable", "vehicleList", null);
+      </script>
+	  </table>
+  </div>
+  <div id="uploadVehiclesArea">
+    <script language="JavaScript">
+      var vehicleForm = new pcmi.FormViewer("vehicle", "/personal/cars", "vehicleList", "uploadVehiclesArea");
+    </script>
+  </div>
+  <div id="addMoreVehiclesButton" onclick="vehicleForm.toggleUploadArea('uploadVehiclesArea', 'addMoreVehiclesButton', 'vehicle', 'vehicleForm', event)">
+	  <img class="expandButton" src="img/add_plus.png" onkeypress="vehicleForm.toggleUploadArea('uploadVehiclesArea', 'addMoreVehiclesButton', 'vehicle', 'vehicleForm', event)" tabindex=1/>
+    <span id="ButtonLabelAddVehicle">Add Vehicle</span>
+  </div>
+  <div class="sectionSeparator">
+    <!-- add comment to make non-empty -->
+  </div>
+  <div class="sectionHeader">
+    <h2 id="warningsHeader">Community warning sounds on device</h2>
+  </div>
+  <div class="listArea">
+    <table id="warningTable">
+	    <script language="JavaScript">
+        var warningList = new pcmi.FileListViewer("/personal/sounds", "warningTable", "warningList", null);
+      </script>
+	  </table>
+  </div>
+  <div id="uploadWarningsArea">
+    <script language="JavaScript">
+      var warningForm = new pcmi.FormViewer("warning", "/personal/sounds", "warningList", "uploadWarningsArea");
+    </script>
+  </div>
+  <div id="addMoreWarningsButton" onclick="warningForm.toggleUploadArea('uploadWarningsArea', 'addMoreWarningsButton', 'warning', 'warningForm', event)">
+	  <img class="expandButton" src="img/add_plus.png" onkeypress="warningForm.toggleUploadArea('uploadWarningsArea', 'addMoreWarningsButton', 'warning', 'warningForm', event)" tabindex=1/>
+    <span id="ButtonLabelAddWarning">Add Warning Sound</span>
+  </div>
+</div>
+<div id="progressScreen">
+  <!-- comment to prevent empty div -->
+</div>
+<div id="progressInfo">
+  <p>
+    <span id="updatingString">Updating your device.</span>
+    <br>
+    <span id="waitingString">Please wait...</span>
+  </p>
+  <img src="img/loading_big.gif" />
+</div>
+
+<script type="text/javascript">
+  <!--
+  var textWriter = new pcmi.TextWriter();
+  -->
+</script>
+</script>
+</body>
+</html>

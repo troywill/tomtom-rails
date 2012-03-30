@@ -1,0 +1,8 @@
+<ul>
+  <ol>http://railscasts.com/episodes/210-customizing-devise</ol>
+  <ol>http://www.tonyamoyal.com/2010/07/28/rails-authentication-with-devise-and-cancan-customizing-devise-controllers/</ol>
+  <ol>http://railscasts.com/episodes/209-introducing-devise</ol>
+  <ol>http://ruby-toolbox.com/categories/rails_authentication.html</ol>
+  <ol>https://github.com/plataformatec/devise/tree/v1.1.6</ol>
+  <ol>https://github.com/plataformatec/devise/tree/v1.1.6/README.rdoc</ol>
+</ul>
