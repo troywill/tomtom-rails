@@ -3,3 +3,5 @@
 * Google search on tomtom usb0
 * sudo dhcpcd usb0
 * http://169.254.255.1/pcmi/
+See Geo::Coder::TomTom on cpan.org
+See Geo::Ov2 Library for reading and writing TomTom Navigator .ov2 POI files. on cpan.org
