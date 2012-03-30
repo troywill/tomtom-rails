@@ -1,0 +1,5 @@
+* http://opentom.org/Main_Page
+* I am writing a Perl program
+* Google search on tomtom usb0
+* sudo dhcpcd usb0
+* http://169.254.255.1/pcmi/
